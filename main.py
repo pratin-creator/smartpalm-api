@@ -289,4 +289,8 @@ async def predict_v1(file: UploadFile = File(...)):
                 "technical_detail": str(e),
                 "timestamp": datetime.now().isoformat(),
             },
+<<<<<<< HEAD
         )
+=======
+        )
+>>>>>>> f13f991a10428fe874d138312546cbeaf7508e2a
