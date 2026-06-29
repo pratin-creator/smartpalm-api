@@ -1,7 +1,7 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from tensorflow.keras.models import load_model
-from huggingface_hub import hf_hub_download
+
 from tensorflow.keras.utils import load_img, img_to_array
 import numpy as np
 import io
@@ -14,8 +14,7 @@ from typing import Optional
 # Basic Config
 # =========================
 
-HF_REPO = "smartpalmai/SmartPalm-MobileNetV2"
-HF_FILENAME = "smartpalm_mobilenetv2.h5"
+MODEL_PATH = "smartpalm_mobilenetv2.h5"
 MODEL_NAME = "MobileNetV2"
 MODEL_VERSION = "v1.2"
 API_VERSION = "1.2"
@@ -53,17 +52,12 @@ model = None
 
 def get_model():
     global model
+    
     if model is None:
         logger.info("Loading AI model...")
-        print("Downloading model from Hugging Face...")
-        MODEL_PATH = hf_hub_download(
-            repo_id=HF_REPO,
-            filename=HF_FILENAME
-        )
-        print("Loading model...")
         model = load_model(MODEL_PATH)
-        print("Model Loaded Successfully")
         logger.info("Model loaded successfully.")
+
     return model
 
 
