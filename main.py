@@ -1,7 +1,6 @@
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from tensorflow.keras.models import load_model
-
 from tensorflow.keras.utils import load_img, img_to_array
 import numpy as np
 import io
