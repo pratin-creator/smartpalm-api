@@ -4,7 +4,7 @@ import numpy as np
 from fastapi import FastAPI, File, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image
-import tflite_runtime.interpreter as tflite
+import tensorflow as tf
 
 app = FastAPI(title="SmartPalm API", version="2.0.0-tflite")
 
@@ -37,7 +37,7 @@ DISEASE_CODE_MAP = {
 }
 
 # โหลด TFLite ครั้งเดียวตอน startup
-interpreter = tflite.Interpreter(model_path=MODEL_PATH)
+interpreter = tf.lite.Interpreter(model_path=MODEL_PATH)
 interpreter.allocate_tensors()
 input_details = interpreter.get_input_details()
 output_details = interpreter.get_output_details()
